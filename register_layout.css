@@ -1,0 +1,283 @@
+body{
+  /*background-color: #030913;*/
+  /*background-image: url("images/register_bg.jpg");*/
+  /*      background-repeat: no-repeat;*/
+  /*      background-position: center;*/
+  /*      background-size: cover;*/
+  background-color: black;
+  background-image: url(https://www.cyberpunk.net/build/images/dots-top-menu-mobile-9ae26fd8.png),url(https://www.cyberpunk.net/build/images/dots-bottom-menu-mobile-cdfa986f.png);
+  font-family: Roboto,Arial,sans-serif;
+  color: white;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #251a1a;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5cdee0;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+@font-face {
+  font-family: cyberpunk;
+  src: url("font/ProcyonItalic-BWxon.ttf");
+}
+.heading {
+  padding: 20px 0 0 50px;
+  font-family: "cyberpunk", sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+}
+.sub-heading{
+  font-family: "cyberpunk", sans-serif;
+  font-size: 2rem;
+}
+.strokeme
+{
+    color: white;
+    text-shadow:
+    -0.5px -0.5px 0 #000,
+    0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000,
+    0.5px 0.5px 0 #000;  
+}
+.holder{
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card{
+	border-radius: 20px;
+	max-width: 800px;
+  border: none;
+}
+/*.console {*/
+/*  font-family: 'Fira Mono';*/
+/*  box-sizing: border-box;*/
+/*  margin: auto;*/
+/*  border-radius: 20px;*/
+/*  overflow: hidden;*/
+/*  !* background-color: transparent;*/
+/*  backdrop-filter: blur(5px); *!*/
+/*}*/
+
+/*.console header {*/
+/*  */
+/*  !* border-top-left-radius: 15px;*/
+/*  border-top-right-radius: 15px; *!*/
+/*  !* clip-path: polygon(0 0, 100% 0, 100% 80%, 60% 80%, 55% 100%, 45% 100%, 40% 80%, 0 80%); *!*/
+/*  background-color: #0953A2;*/
+/*  text-align: center;*/
+/*  color: #DDD;*/
+/*  padding:10px;*/
+/*}*/
+
+/*.console .consolebody {*/
+/*  padding: 10px;*/
+/*  background-color: #012351;*/
+/*  z-index: -1;*/
+/*}*/
+
+/*.console .consolebody p {*/
+/*  line-height: 1.5rem;*/
+/*}*/
+.hl_pe {
+  display: flex;
+  flex-direction: row;
+}
+.hl_pe:before{
+  content: "";
+  flex: 0.2;
+  border-bottom: 2px solid #ffffff;
+  margin: auto;
+}
+.hl_pe:after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #ffffff;
+  margin: auto;
+}
+.login-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  max-width: 350px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(255,255,255,.3);
+  border-radius: 10px;
+  color: white;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form .form-link {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+.login-box .form-link:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+  0 0 25px #03e9f4,
+  0 0 50px #03e9f4,
+  0 0 100px #03e9f4;
+}
+
+.login-box .form-link span {
+  position: absolute;
+  display: block;
+}
+
+.login-box .form-link span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box .form-link span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box .form-link span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box .form-link span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+@media (max-width: 700px) {
+    .box {
+			--mask:
+			radial-gradient(48.02px at 50% calc(100% - 67.50px),#000 99%,#0000 101%) calc(50% - 60px) 0/120px 100%,
+			radial-gradient(48.02px at 50% calc(100% + 37.50px),#0000 99%,#000 101%) 50% calc(100% - 30px)/120px 100% repeat-x;
+		-webkit-mask: var(--mask);
+						mask: var(--mask);
+    }
+  .heading{
+    font-size: 3rem;
+  }
+
+}
+@media (max-width: 500px) {
+  .heading{
+    font-size: 2rem;
+  }
+}
