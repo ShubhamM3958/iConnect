@@ -3,7 +3,7 @@ if(!defined('key')) {
    die('Direct access not permitted');
 }
 ?>
-<nav class="navbar navbar-expand-md navbar-dark position-fixed w-100 z-3">
+<nav class="navbar navbar-expand-md navbar-dark position-fixed w-100">
     <div class="container-fluid nav-content">
         <a class="navbar-brand px-1" href="index.php">
             <img

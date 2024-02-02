@@ -6,6 +6,8 @@ const navbar = document.querySelector('.navbar');
 
 window.onscroll = function () {
   const currentScrollPos = window.scrollY;
+  nav_items.classList.remove('active');
+  nav_items.style.right = '-100%';
 
   if (prevScrollPos < currentScrollPos && currentScrollPos>100) {
     navbar.classList.remove('slide-up');
@@ -21,12 +23,10 @@ window.onscroll = function () {
 nav_toggler.addEventListener('click', () => {
   if (!nav_items.classList.contains('active')) {
     nav_items.classList.add('active');
-    console.log('active');
     nav_items.style.right = '0%';
   }
   else {
     nav_items.classList.remove('active');
-    console.log('not active');
     nav_items.style.right = '-100%';
   }
 })

@@ -1,4 +1,39 @@
-<!DOCTYPE html>
+<?php
+//  $servername = "localhost";
+//  $username = "root";
+//  $password = "root";
+//  $database = "iconnect_test";
+
+$servername = "118.139.160.140";
+$username = "shubham_poco";
+$password = "Shubham#Sql3958";
+$database = "iconnect_test";
+$conn = new mysqli($servername, $username, $password, $database);
+if ($conn->connect_error) {
+    $error_message = "Connection Error";
+}
+?>
+
+<?php
+$sql = "SELECT name FROM events";
+$result = $conn->query($sql);
+$event_names = array();
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $event_names[] = $row["name"];
+    }
+} else {
+    exit('database error(no event found)');
+}
+//$event_names = ["Exihibition","VISIONathon","GJU Talks","Viz-Wiz","Block Chain Workshop","Shutter Shor","Hudle Race","Workshop","Digikriti 2.0","Elevator Pitch 5.0","Crown for Code","Memory Challenge","Scavenger Hunt","Brain Battles","Near Conclave"];
+if (isset($_GET['eventid']) && is_numeric($_GET['eventid']) && $_GET['eventid'] >= 0 && $_GET['eventid'] < count($event_names)) {
+    // Retrieve the id value from the URL
+    $eventid = $_GET['eventid']+1;
+} else {
+    $eventid = 1;
+}
+
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -38,36 +73,138 @@
     <link rel="stylesheet" href="register_layout.css" />
       <link rel="stylesheet" href="template/nav_style.css"/>
       <link rel="stylesheet" href="template/footer_style.css"/>
-    <title>iConnect Register</title>
+    <title><?php
+        echo $event_names[$eventid-1];
+        ?> Registration(iConnect Society)</title>
   </head>
   <body>
   <?php
   define('key', TRUE);
   ?>
+
   <?php
-  $event_names = ["Exihibition","VISIONathon","GJU Talks","Viz-Wiz","Block Chain Workshop","Shutter Shor","Hudle Race","Workshop","Digikriti 2.0","Elevator Pitch 5.0","Crown for Code","Memory Challenge","Scavenger Hunt"];
-  if (isset($_GET['eventid']) && is_numeric($_GET['eventid']) && $_GET['eventid'] >= 0 && $_GET['eventid'] < count($event_names)) {
-      // Retrieve the id value from the URL
-      $eventid = $_GET['eventid']+1;
+  $sql = "SELECT * FROM events WHERE id = " . $eventid;
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      // Fetch the row as an associative array
+      $event = $result->fetch_assoc();
   } else {
-      $eventid = 1;
+      $event=null;
   }
+  $conn->close();
+  if (!$event['active']) {
+      header("Location: ../");
+      exit();
+  }
+  //  $events = [
+  //      "exhibition" => [
+  //          "about" => "About Event 1",
+  //          "timeline" => "Timeline for Event 1",
+  //          "rules" => "Rules for Event 1",
+  //          "contact" => "Coordinator Info for Event 1",
+  //          "poster" => "Poster for Event 1",
+  //          "unstop" => true
+  //      ],
+  //      "visionathon" => [
+  //          "about" => "Visionathon 2024, is a nationwide initiative poised to transform the landscape of problem-solving. Focused on fostering a culture of product innovation, this event invites students to address critical challenges faced by our society, with a special emphasis on solving army problem statements and industry challenges. Through Visionathon, we aim to instill a mindset of proactive problem-solving, encouraging participants to devise ingenious solutions that have a tangible impact on our daily lives.",
+  //          "timeline" => "Timeline for VISIONathon",
+  //          "rules" => "Rules for VISIONathon",
+  //          "contact" => "Coordinator Info for VISIONathon",
+  //          "poster" => "Poster for VISIONathon",
+  //          "unstop" => false
+  //      ],
+  //      "gjutalks" => [
+  //          "about" => "About GJU Talks",
+  //          "timeline" => "Timeline for GJU Talks",
+  //          "rules" => "Rules for GJU Talks",
+  //          "contact" => "Coordinator Info for GJU Talks",
+  //          "poster" => "Poster for GJU Talks",
+  //          "unstop" => true
+  //      ],
+  //      "vizwiz" => [
+  //          "about" => "About Viz-Wiz",
+  //          "timeline" => "Timeline for Viz-Wiz",
+  //          "rules" => "Rules for Viz-Wiz",
+  //          "contact" => "Coordinator Info for Viz-Wiz",
+  //          "poster" => "Poster for Viz-Wiz",
+  //          "unstop" => false
+  //      ],
+  //      "blockchainworkshop" => [
+  //          "about" => "About Block Chain Workshop",
+  //          "timeline" => "Timeline for Block Chain Workshop",
+  //          "rules" => "Rules for Block Chain Workshop",
+  //          "contact" => "Coordinator Info for Block Chain Workshop",
+  //          "poster" => "Poster for Block Chain Workshop",
+  //          "unstop" => true
+  //      ],
+  //      "shuttershor" => [
+  //          "about" => "About Shutter Shor",
+  //          "timeline" => "Timeline for Shutter Shor",
+  //          "rules" => "Rules for Shutter Shor",
+  //          "contact" => "Coordinator Info for Shutter Shor",
+  //          "poster" => "Poster for Shutter Shor",
+  //          "unstop" => true
+  //      ],
+  //      "hudlerace" => [
+  //          "about" => "About Hudle Race",
+  //          "timeline" => "Timeline for Hudle Race",
+  //          "rules" => "Rules for Hudle Race",
+  //          "contact" => "Coordinator Info for Hudle Race",
+  //          "poster" => "Poster for Hudle Race",
+  //          "unstop" => false
+  //      ],
+  //      "workshop" => [
+  //          "about" => "About Workshop",
+  //          "timeline" => "Timeline for Workshop",
+  //          "rules" => "Rules for Workshop",
+  //          "contact" => "Coordinator Info for Workshop",
+  //          "poster" => "Poster for Workshop",
+  //          "unstop" => true
+  //      ],
+  //      "digikriti" => [
+  //          "about" => "About Digikriti 2.0",
+  //          "timeline" => "Timeline for Digikriti 2.0",
+  //          "rules" => "Rules for Digikriti 2.0",
+  //          "contact" => "Coordinator Info for Digikriti 2.0",
+  //          "poster" => "Poster for Digikriti 2.0",
+  //          "unstop" => false
+  //      ],
+  //      "elevatorpitch" => [
+  //          "about" => "About Elevator Pitch 5.0",
+  //          "timeline" => "Timeline for Elevator Pitch 5.0",
+  //          "rules" => "Rules for Elevator Pitch 5.0",
+  //          "contact" => "Coordinator Info for Elevator Pitch 5.0",
+  //          "poster" => "Poster for Elevator Pitch 5.0",
+  //          "unstop" => true
+  //      ],
+  //      "crownforcode" => [
+  //          "about" => "About Crown for Code",
+  //          "timeline" => "Timeline for Crown for Code",
+  //          "rules" => "Rules for Crown for Code",
+  //          "contact" => "Coordinator Info for Crown for Code",
+  //          "poster" => "Poster for Crown for Code",
+  //          "unstop" => false
+  //      ],
+  //      "memorychallenge" => [
+  //          "about" => "About Memory Challenge",
+  //          "timeline" => "Timeline for Memory Challenge",
+  //          "rules" => "Rules for Memory Challenge",
+  //          "contact" => "Coordinator Info for Memory Challenge",
+  //          "poster" => "Poster for Memory Challenge",
+  //          "unstop" => true
+  //      ],
+  //      "scavengerhunt" => [
+  //          "about" => "About Scavenger Hunt",
+  //          "timeline" => "Timeline for Scavenger Hunt",
+  //          "rules" => "Rules for Scavenger Hunt",
+  //          "contact" => "Coordinator Info for Scavenger Hunt",
+  //          "poster" => "Poster for Scavenger Hunt",
+  //          "unstop" => false
+  //      ]
+  //  ];
 
   ?>
   <?php
-//  $servername = "localhost";
-//  $username = "root";
-//  $password = "root";
-//  $database = "iconnect_test";
-
-  $servername = "118.139.160.140";
-  $username = "shubham_poco";
-  $password = "Shubham#Sql3958";
-  $database = "iconnect_test";
-  $conn = new mysqli($servername, $username, $password, $database);
-  if ($conn->connect_error) {
-      $error_message = "Connection Error";
-  }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -104,139 +241,20 @@
   }
   ?>
 
-  <?php
-  $sql = "SELECT * FROM events WHERE id = " . $eventid;
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      // Fetch the row as an associative array
-      $event = $result->fetch_assoc();
-  } else {
-      $event=null;
-  }
-  $conn->close();
-  if (!$event['active']) {
-      header("Location: ../");
-      exit();
-  }
-//  $events = [
-//      "exhibition" => [
-//          "about" => "About Event 1",
-//          "timeline" => "Timeline for Event 1",
-//          "rules" => "Rules for Event 1",
-//          "contact" => "Coordinator Info for Event 1",
-//          "poster" => "Poster for Event 1",
-//          "unstop" => true
-//      ],
-//      "visionathon" => [
-//          "about" => "Visionathon 2024, is a nationwide initiative poised to transform the landscape of problem-solving. Focused on fostering a culture of product innovation, this event invites students to address critical challenges faced by our society, with a special emphasis on solving army problem statements and industry challenges. Through Visionathon, we aim to instill a mindset of proactive problem-solving, encouraging participants to devise ingenious solutions that have a tangible impact on our daily lives.",
-//          "timeline" => "Timeline for VISIONathon",
-//          "rules" => "Rules for VISIONathon",
-//          "contact" => "Coordinator Info for VISIONathon",
-//          "poster" => "Poster for VISIONathon",
-//          "unstop" => false
-//      ],
-//      "gjutalks" => [
-//          "about" => "About GJU Talks",
-//          "timeline" => "Timeline for GJU Talks",
-//          "rules" => "Rules for GJU Talks",
-//          "contact" => "Coordinator Info for GJU Talks",
-//          "poster" => "Poster for GJU Talks",
-//          "unstop" => true
-//      ],
-//      "vizwiz" => [
-//          "about" => "About Viz-Wiz",
-//          "timeline" => "Timeline for Viz-Wiz",
-//          "rules" => "Rules for Viz-Wiz",
-//          "contact" => "Coordinator Info for Viz-Wiz",
-//          "poster" => "Poster for Viz-Wiz",
-//          "unstop" => false
-//      ],
-//      "blockchainworkshop" => [
-//          "about" => "About Block Chain Workshop",
-//          "timeline" => "Timeline for Block Chain Workshop",
-//          "rules" => "Rules for Block Chain Workshop",
-//          "contact" => "Coordinator Info for Block Chain Workshop",
-//          "poster" => "Poster for Block Chain Workshop",
-//          "unstop" => true
-//      ],
-//      "shuttershor" => [
-//          "about" => "About Shutter Shor",
-//          "timeline" => "Timeline for Shutter Shor",
-//          "rules" => "Rules for Shutter Shor",
-//          "contact" => "Coordinator Info for Shutter Shor",
-//          "poster" => "Poster for Shutter Shor",
-//          "unstop" => true
-//      ],
-//      "hudlerace" => [
-//          "about" => "About Hudle Race",
-//          "timeline" => "Timeline for Hudle Race",
-//          "rules" => "Rules for Hudle Race",
-//          "contact" => "Coordinator Info for Hudle Race",
-//          "poster" => "Poster for Hudle Race",
-//          "unstop" => false
-//      ],
-//      "workshop" => [
-//          "about" => "About Workshop",
-//          "timeline" => "Timeline for Workshop",
-//          "rules" => "Rules for Workshop",
-//          "contact" => "Coordinator Info for Workshop",
-//          "poster" => "Poster for Workshop",
-//          "unstop" => true
-//      ],
-//      "digikriti" => [
-//          "about" => "About Digikriti 2.0",
-//          "timeline" => "Timeline for Digikriti 2.0",
-//          "rules" => "Rules for Digikriti 2.0",
-//          "contact" => "Coordinator Info for Digikriti 2.0",
-//          "poster" => "Poster for Digikriti 2.0",
-//          "unstop" => false
-//      ],
-//      "elevatorpitch" => [
-//          "about" => "About Elevator Pitch 5.0",
-//          "timeline" => "Timeline for Elevator Pitch 5.0",
-//          "rules" => "Rules for Elevator Pitch 5.0",
-//          "contact" => "Coordinator Info for Elevator Pitch 5.0",
-//          "poster" => "Poster for Elevator Pitch 5.0",
-//          "unstop" => true
-//      ],
-//      "crownforcode" => [
-//          "about" => "About Crown for Code",
-//          "timeline" => "Timeline for Crown for Code",
-//          "rules" => "Rules for Crown for Code",
-//          "contact" => "Coordinator Info for Crown for Code",
-//          "poster" => "Poster for Crown for Code",
-//          "unstop" => false
-//      ],
-//      "memorychallenge" => [
-//          "about" => "About Memory Challenge",
-//          "timeline" => "Timeline for Memory Challenge",
-//          "rules" => "Rules for Memory Challenge",
-//          "contact" => "Coordinator Info for Memory Challenge",
-//          "poster" => "Poster for Memory Challenge",
-//          "unstop" => true
-//      ],
-//      "scavengerhunt" => [
-//          "about" => "About Scavenger Hunt",
-//          "timeline" => "Timeline for Scavenger Hunt",
-//          "rules" => "Rules for Scavenger Hunt",
-//          "contact" => "Coordinator Info for Scavenger Hunt",
-//          "poster" => "Poster for Scavenger Hunt",
-//          "unstop" => false
-//      ]
-//  ];
 
-  ?>
+
+
 
 
   <?php include('template/nav.php'); ?>
   <div style="padding-top: 100px">
       <div>
           <h1 class="heading"><?php
-              echo $event_names[$eventid-1];
+              echo $event['name'];
               ?></h1>
 
       </div>
-      <div class="row justify-content-center pt-5 m-0">
+      <div class="row justify-content-center pt-5 m-1">
           <div class="col-lg-4 col-md-12 order-1 order-lg-0">
               <div class="mt-5">
                   <div class="hl_pe">
@@ -245,8 +263,8 @@
                   <span
                   >
                       <?php
-                        if(isset($event)){
-                          echo $event['about'];
+                        if(isset($event['about'])){
+                          echo str_replace("\n", "<br>", $event['about']);
                         }
                         else{
                           echo "null";
@@ -262,8 +280,8 @@
                   </div>
                   <span
                   ><?php
-                      if(isset($event)){
-                          echo $event['timeline'];
+                      if(isset($event['timeline'])){
+                          echo str_replace("\n", "<br>", $event['timeline']);
                       }
                       else{
                           echo "null";
@@ -278,8 +296,8 @@
                   </div>
                   <span
                   ><?php
-                      if(isset($event)){
-                          echo $event['rules'];
+                      if(isset($event['rules'])){
+                          echo str_replace("\n", "<br>", $event['rules']);
                       }
                       else{
                           echo "null";
@@ -290,27 +308,27 @@
               </div>
           </div>
           <div class="col-lg-4 order-0 order-lg-1">
-              <div class="">
+              <div class="sticky-top z-3">
+                  <div class="text-center">
 
-                  <img class="img-fluid" src=<?php
-                  if(isset($event)){
-//                      echo $event['poster'];
-                      echo "images/konark_poster.png";
-                  }
-                  else{
-                      echo "images/konark_poster.png";
-                  }
+                      <img class="img-fluid" src=<?php
+                      if(isset($event['poster'])){
+                          echo $event['poster'];
+                      }
+                      else{
+                          echo "images/konark_poster.png";
+                      }
 
-                  ?> />
-              </div>
-              <div class="mt-5">
-                  <div class="hl_pe">
-                      <h3 class="sub-heading">Contact Coordinators</h3>
+                      ?> />
                   </div>
-                  <span>
+                  <div class="mt-5">
+                      <div class="hl_pe">
+                          <h3 class="sub-heading">Contact Us</h3>
+                      </div>
+                      <span>
                       <?php
-                      if(isset($event)){
-                          echo $event['contact'];
+                      if(isset($event['contact'])){
+                          echo str_replace("\n", "<br>", $event['contact']);;
                       }
                       else{
                           echo "null";
@@ -318,10 +336,13 @@
 
                       ?>
                   </span>
+                  </div>
               </div>
+
           </div>
-          <div class="col-lg-4 order-2 pt-md-5 pt-md-5">
-              <div class="login-box">
+          <div class="col-lg-4 order-2 pt-md-5 pt-md-5 align-content-center">
+
+              <div class="login-box pt-sm-3">
                   <h2 class="sub-heading">Register for Event</h2>
                   <?php if (isset($error_message)) echo "<p class='text-danger'>$error_message</p>"; ?>
                   <?php if(isset($event) && !$event['link']): ?>

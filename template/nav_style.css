@@ -17,6 +17,9 @@
             0.5px -0.5px 0 white,
             0.5px 0.5px 0 white;
 }
+.navbar{
+    z-index: 99;
+}
 .navbar-toggler:focus{
     box-shadow: none;
 }

@@ -41,7 +41,6 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"
     ></script>
-
     <link rel="icon" type="image/x-icon" href="images/iconnect.jpg" />
     <link rel="stylesheet" href="index_layout.css" />
     <link rel="stylesheet" href="template/nav_style.css"/>
@@ -67,21 +66,6 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     $error_message = "Connection Error";
 }
-//$events = [
-//    ["name" => "Exhibition", "poster" => "images/iconnect.jpg", "active" => false],
-//    ["name" => "VISIONathon", "poster" => "images/events/icons/2.png", "active" => true],
-//    ["name" => "GJU Talks", "poster" => "gju_talks_poster.jpg", "active" => false],
-//    ["name" => "Viz-Wiz", "poster" => "images/events/icons/4.png", "active" => true],
-//    ["name" => "Block Chain Workshop", "poster" => "block_chain_workshop_poster.jpg", "active" => false],
-//    ["name" => "Shutter Shor", "poster" => "images/events/icons/3.png", "active" => true],
-//    ["name" => "Hudle Race", "poster" => "hudle_race_poster.jpg", "active" => false],
-//    ["name" => "Workshop", "poster" => "workshop_poster.jpg", "active" => false],
-//    ["name" => "Digikriti 2.0", "poster" => "digikriti_poster.jpg", "active" => false],
-//    ["name" => "Elevator Pitch 5.0", "poster" => "elevator_pitch_poster.jpg", "active" => false],
-//    ["name" => "Crown for Code", "poster" => "images/events/icons/1.png", "active" => true],
-//    ["name" => "Memory Challenge", "poster" => "memory_challenge_poster.jpg", "active" => false],
-//    ["name" => "Scavenger Hunt", "poster" => "scavenger_hunt_poster.jpg", "active" => false]
-//];
 $sql = "SELECT * FROM events";
 $result = $conn->query($sql);
 
@@ -92,11 +76,10 @@ $events = [];
 if ($result->num_rows > 0) {
     // Loop through each row and fetch data
     while ($row = $result->fetch_assoc()) {
-        // Structure each row into the desired format and add it to the $events array
         $events[] = [
             "name" => $row["name"],
             "poster" => $row["icon"],
-            "active" => (bool) $row["active"] // Convert active column value to boolean
+            "active" => (bool) $row["active"]
         ];
     }
 }
@@ -188,39 +171,6 @@ $conn->close();
                     </div>
 
                 <?php endif; endforeach; ?>
-
-<!--            <div class="col-6 col-md-5 col-lg-3 workshop-card p-2">-->
-<!--                <img-->
-<!--                        class="img-fluid workshop-logo"-->
-<!--                        src="images/events/icons/4.png"-->
-<!--                />-->
-<!--                <h5>Viz-Wiz</h5>-->
-<!--            </div>-->
-<!--            <div class="col-6 col-md-5 col-lg-3 workshop-card p-2">-->
-<!--                <img-->
-<!--                        class="img-fluid workshop-logo"-->
-<!--                        src="images/events/icons/1.png"-->
-<!--                />-->
-<!--                <h5>Crown for Code</h5>-->
-<!--            </div>-->
-
-<!--            <div class="col-6 col-md-5 col-lg-2 workshop-card">-->
-<!--                <img-->
-<!--                        class="img-fluid workshop-logo"-->
-<!--                        src="images/events/icons/3.png"-->
-<!--                        alt="Logo 1"-->
-<!--                />-->
-<!--                <h5>Shutter Shot</h5>-->
-<!--            </div>-->
-
-<!--            <div class="col-6 col-md-5 col-lg-2 workshop-card">-->
-<!--                <img-->
-<!--                        class="img-fluid workshop-logo"-->
-<!--                        src="images/iconnect.jpg"-->
-<!--                        alt="Logo 1"-->
-<!--                />-->
-<!--                <h5>workshop</h5>-->
-<!--            </div>-->
         </div>
         <!-- <h1 class="section-title pt-2">Past Events</h1> -->
         <div class="hl_pe mt-5">

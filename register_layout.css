@@ -108,11 +108,11 @@ body{
 }
 .login-box {
   position: relative;
-  top: 50%;
+  /*top: 50%;*/
   left: 50%;
   max-width: 350px;
   padding: 40px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   background: rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(255,255,255,.3);
