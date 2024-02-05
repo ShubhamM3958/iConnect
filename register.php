@@ -91,123 +91,15 @@ if (isset($_GET['eventid']) && is_numeric($_GET['eventid']) && $_GET['eventid'] 
   } else {
       $event=null;
   }
-  $conn->close();
+
   if (!$event['active']) {
       header("Location: ../");
       exit();
   }
-  //  $events = [
-  //      "exhibition" => [
-  //          "about" => "About Event 1",
-  //          "timeline" => "Timeline for Event 1",
-  //          "rules" => "Rules for Event 1",
-  //          "contact" => "Coordinator Info for Event 1",
-  //          "poster" => "Poster for Event 1",
-  //          "unstop" => true
-  //      ],
-  //      "visionathon" => [
-  //          "about" => "Visionathon 2024, is a nationwide initiative poised to transform the landscape of problem-solving. Focused on fostering a culture of product innovation, this event invites students to address critical challenges faced by our society, with a special emphasis on solving army problem statements and industry challenges. Through Visionathon, we aim to instill a mindset of proactive problem-solving, encouraging participants to devise ingenious solutions that have a tangible impact on our daily lives.",
-  //          "timeline" => "Timeline for VISIONathon",
-  //          "rules" => "Rules for VISIONathon",
-  //          "contact" => "Coordinator Info for VISIONathon",
-  //          "poster" => "Poster for VISIONathon",
-  //          "unstop" => false
-  //      ],
-  //      "gjutalks" => [
-  //          "about" => "About GJU Talks",
-  //          "timeline" => "Timeline for GJU Talks",
-  //          "rules" => "Rules for GJU Talks",
-  //          "contact" => "Coordinator Info for GJU Talks",
-  //          "poster" => "Poster for GJU Talks",
-  //          "unstop" => true
-  //      ],
-  //      "vizwiz" => [
-  //          "about" => "About Viz-Wiz",
-  //          "timeline" => "Timeline for Viz-Wiz",
-  //          "rules" => "Rules for Viz-Wiz",
-  //          "contact" => "Coordinator Info for Viz-Wiz",
-  //          "poster" => "Poster for Viz-Wiz",
-  //          "unstop" => false
-  //      ],
-  //      "blockchainworkshop" => [
-  //          "about" => "About Block Chain Workshop",
-  //          "timeline" => "Timeline for Block Chain Workshop",
-  //          "rules" => "Rules for Block Chain Workshop",
-  //          "contact" => "Coordinator Info for Block Chain Workshop",
-  //          "poster" => "Poster for Block Chain Workshop",
-  //          "unstop" => true
-  //      ],
-  //      "shuttershor" => [
-  //          "about" => "About Shutter Shor",
-  //          "timeline" => "Timeline for Shutter Shor",
-  //          "rules" => "Rules for Shutter Shor",
-  //          "contact" => "Coordinator Info for Shutter Shor",
-  //          "poster" => "Poster for Shutter Shor",
-  //          "unstop" => true
-  //      ],
-  //      "hudlerace" => [
-  //          "about" => "About Hudle Race",
-  //          "timeline" => "Timeline for Hudle Race",
-  //          "rules" => "Rules for Hudle Race",
-  //          "contact" => "Coordinator Info for Hudle Race",
-  //          "poster" => "Poster for Hudle Race",
-  //          "unstop" => false
-  //      ],
-  //      "workshop" => [
-  //          "about" => "About Workshop",
-  //          "timeline" => "Timeline for Workshop",
-  //          "rules" => "Rules for Workshop",
-  //          "contact" => "Coordinator Info for Workshop",
-  //          "poster" => "Poster for Workshop",
-  //          "unstop" => true
-  //      ],
-  //      "digikriti" => [
-  //          "about" => "About Digikriti 2.0",
-  //          "timeline" => "Timeline for Digikriti 2.0",
-  //          "rules" => "Rules for Digikriti 2.0",
-  //          "contact" => "Coordinator Info for Digikriti 2.0",
-  //          "poster" => "Poster for Digikriti 2.0",
-  //          "unstop" => false
-  //      ],
-  //      "elevatorpitch" => [
-  //          "about" => "About Elevator Pitch 5.0",
-  //          "timeline" => "Timeline for Elevator Pitch 5.0",
-  //          "rules" => "Rules for Elevator Pitch 5.0",
-  //          "contact" => "Coordinator Info for Elevator Pitch 5.0",
-  //          "poster" => "Poster for Elevator Pitch 5.0",
-  //          "unstop" => true
-  //      ],
-  //      "crownforcode" => [
-  //          "about" => "About Crown for Code",
-  //          "timeline" => "Timeline for Crown for Code",
-  //          "rules" => "Rules for Crown for Code",
-  //          "contact" => "Coordinator Info for Crown for Code",
-  //          "poster" => "Poster for Crown for Code",
-  //          "unstop" => false
-  //      ],
-  //      "memorychallenge" => [
-  //          "about" => "About Memory Challenge",
-  //          "timeline" => "Timeline for Memory Challenge",
-  //          "rules" => "Rules for Memory Challenge",
-  //          "contact" => "Coordinator Info for Memory Challenge",
-  //          "poster" => "Poster for Memory Challenge",
-  //          "unstop" => true
-  //      ],
-  //      "scavengerhunt" => [
-  //          "about" => "About Scavenger Hunt",
-  //          "timeline" => "Timeline for Scavenger Hunt",
-  //          "rules" => "Rules for Scavenger Hunt",
-  //          "contact" => "Coordinator Info for Scavenger Hunt",
-  //          "poster" => "Poster for Scavenger Hunt",
-  //          "unstop" => false
-  //      ]
-  //  ];
 
   ?>
   <?php
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
 
       // Create connection
       $name = isset($_POST["name"]) ? mysqli_real_escape_string($conn, $_POST["name"]) : "";
@@ -231,7 +123,8 @@ if (isset($_GET['eventid']) && is_numeric($_GET['eventid']) && $_GET['eventid'] 
 
 
           if ($conn->query($sql) === TRUE) {
-              $error_message = "Saved...";
+              header("Location: registered.php");
+              exit();
 
           } else {
               $error_message = "Duplicate entry or sql Error";
@@ -239,6 +132,7 @@ if (isset($_GET['eventid']) && is_numeric($_GET['eventid']) && $_GET['eventid'] 
       }
 
   }
+  $conn->close();
   ?>
 
 

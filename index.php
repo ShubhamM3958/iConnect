@@ -298,14 +298,17 @@ $conn->close();
                         </div>
                         <div class="card-body">
                             <p class="about-text">
-                                The iConnect Society is a student organization located at
-                                the Pandit Deendayal Upadhyay Innovation & Incubation Center
-                                (PDUIIC) at GJUS&T in Hisar. Its goal is to encourage
-                                innovation, collaboration, and skill development among
-                                students. iConnect is run by a well-defined administrative
-                                team, an influential advisory panel, and a mentoring system.
+                                Pandit Deendayal Upadhyaya Innovation & Incubation Centre (PDUIIC)
+                                was established in Guru Jambheshwar University of Science &
+                                Technology, Hisar, Haryana in 2018 and was formally Digitally
+                                Launched by the Hon'ble Prime Minister Sh. Narender Modi Ji on 3rd
+                                February, 2019 from Sher-e-Kashmir International Convention
+                                Centre, Srinagar under the scheme of RUSA 2.0, MHRD, Government of
+                                India, New Delhi simultaneously in Twenty six States, one Union
+                                Territory and Fifty one aspirational districts of the entire
+                                nation with budget outlay of Fifteen Crores.
                             </p>
-                            <a class="link-light link-underline-opacity-0 border-1" href="">Visit Site</a>
+                            <a class="link-light link-underline-opacity-0 border-1" href="https://www.gjust.ac.in/PDUIIC/">Visit Site</a>
                         </div>
                     </div>
                     <div class="custom-card text-center about-info">
@@ -314,13 +317,18 @@ $conn->close();
                         </div>
                         <div class="card-body">
                             <p class="about-text">
-                                The iConnect Society is a student organization located at
-                                the Pandit Deendayal Upadhyay Innovation & Incubation Center
-                                (PDUIIC) at GJUS&T in Hisar. Its goal is to encourage
-                                innovation, collaboration, and skill development among
-                                students. iConnect is run by a well-defined administrative
-                                team, an influential advisory panel, and a mentoring system.
+                                Guru Jambheshwar University of Science & Technology is located in
+                                Hisar, Haryana. It was established on October 20, 1995, with the
+                                objective of promoting studies and research in technology,
+                                pharmacy, environmental studies, energy, and management. The
+                                campus is spread over 372 acres, has basic facilities, and is
+                                located 167 km from Delhi and 231 km from Chandigarh. The
+                                university has two cafeterias, a shopping centre, a salon,
+                                laundry, post office, bookshop, bank, grocery shop, sweets shop,
+                                milk parlour, and shops for mementoes, souvenirs, cards,
+                                computers, and photocopying.
                             </p>
+                            <a class="link-light link-underline-opacity-0 border-1" href="https://www.gjust.ac.in/">Visit Site</a>
                         </div>
                     </div>
                 </div>
@@ -648,7 +656,7 @@ $conn->close();
                             ></div>
                         </div>
                         <div class="team-content">
-                            <h3 class="name">Esha</h3>
+                            <h3 class="name">Isha</h3>
                             <h4 class="title">Coordinator</h4>
                         </div>
                         <ul class="social">
